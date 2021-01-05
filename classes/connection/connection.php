@@ -31,6 +31,23 @@ class connection {
         return json_decode($configjson, true);
     }
 
+    //method for get data
+    public function getData($querystr){
+        $result = $this->dbConnection->query($querystr);
+        $resultArray = array();
+        foreach ($result as $key) {
+            $resultArray[] = $key;
+        }
+        return ($resultArray);
+    }
+
+    //method for insert, update and delete
+    public function nonQuery($querystr){
+        $result = $this->dbConnection->query($querystr);
+        return $this->dbConnection->affected_rows;
+    }
+
+
 }
 
 ?>
