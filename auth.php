@@ -7,7 +7,7 @@ $_auth = new auth;
 if ($_SERVER['REQUEST_METHOD'] == "POST"){
     
     $postData = file_get_contents('php://input');
-    $arrayData = $_login->auth($postData);
+    $arrayData = $_auth->auth($postData);
 
     header('Content-Type: application/json');
     if(isset($arrayData["result"]["error_id"])){
