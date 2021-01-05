@@ -35,10 +35,10 @@ class auth {
     }
     
     private function getUserData($user){
-        $connect = new connection;
+        $_connect = new connection;
         $query = "SELECT UserId, Username, Password, LastAccess, UserType, Status FROM users WHERE Username = '$user'";        
         //use connection class method to get user data
-        $userData = $connect->getData($query);
+        $userData = $_connect->getData($query);
         if (isset($userData['UserId'])){
             return 'user not found';
         }else{
@@ -47,7 +47,7 @@ class auth {
     }
 
     private function addToken($userID){
-        $connect = new connection;
+        $_connect = new connection;
         $true = true;
         $token = bin2hex(openssl_random_pseudo_bytes(16,$true));
         $date = date("Y-m-d H:i");
@@ -55,7 +55,7 @@ class auth {
         $query = "INSERT INTO users_tokens (UserId,Token,Status,Date) VALUES('$userID','$token','$status','$date')";
         
         //use connection class method to insert token data
-        $insertToken = $connect->nonQuery($query);
+        $insertToken = $_connect->nonQuery($query);
         if ($insertToken){
             echo $token;
         }else{
