@@ -24,7 +24,24 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
     }else{
         http_response_code(200);
     }
+
     echo json_encode($arrayData);
+
+}else if($_SERVER['REQUEST_METHOD'] == "PUT"){
+
+    $postData = file_get_contents("php://input");
+    $arrayData = $_user->put($postData);
+
+    header('Content-Type: application/json');
+    if(isset($arrayData["result"]["error_id"])){
+        $response = $arrayData["result"]["error_id"];
+        http_response_code($response);
+    }else{
+        http_response_code(200);
+    }
+    
+    echo json_encode($arrayData);
+
 
 }else{
 
