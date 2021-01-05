@@ -90,6 +90,31 @@ class user {
         }
     }
 
+public function delete($json){
+
+    $data = json_decode($json,true);
+
+    if(!isset($data['userId'])){
+        echo 'error 400';
+    }else{
+        $this->userId = $data['userId'];
+        $this->deleteUser();
+        }
+
+    }
+
+    private function deleteUser(){
+        $_connect = new connection;
+        $query = "DELETE FROM users WHERE UserId= '" . $this->userId . "'";
+        $deleteUser = $_connect->nonQuery($query);
+        if($deleteUser >= 1 ){
+            echo 'accepted';
+        }else{
+            echo 'internal server error';
+        }
+    }
+
+
 }
 
 ?>
