@@ -1,0 +1,9 @@
+{
+    "conecction":{
+        "host" : "localhost",
+        "user" : "root",
+        "password" : "",
+        "name" : "api-php",
+        "port": "3306"
+    }
+}
